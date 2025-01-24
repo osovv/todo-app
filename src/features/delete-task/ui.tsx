@@ -1,3 +1,4 @@
+import { useTranslation, Trans } from "react-i18next";
 import {
   Button,
   Dialog,
@@ -29,6 +30,8 @@ const taskTitleString = (task: taskModel.Task | undefined): string => {
 };
 
 export const DeleteTask = ({ id }: DeleteTaskProps) => {
+const { t } = useTranslation("features/delete-task");
+
   const [task] = useAtom((ctx) => {
     const tasks = ctx.spy(tasksAtom);
     return getEntityById(tasks, id);
@@ -55,10 +58,12 @@ export const DeleteTask = ({ id }: DeleteTaskProps) => {
           <Icon size='6' name='InformationCircleIcon' />
         </DialogHeader>
         <DialogBody>
-          <div className='line-clamp-3'>
-            Are you sure you want to delete{' '}
-            <span className='font-black'>{taskTitleString(task)}</span>?
-          </div>
+          <div className='line-clamp-3'><Trans
+i18nKey="confirm-delete-task"
+values={{ taskTitleStringTask: <>{taskTitleString(task)}</> }}
+components={{"0": <span className='font-black' />}}
+/>
+            </div>
         </DialogBody>
         <DialogFooter>
           <Button
@@ -67,10 +72,10 @@ export const DeleteTask = ({ id }: DeleteTaskProps) => {
             onClick={handleConfirmation}
             className='mr-1'
           >
-            <span>Cancel</span>
+            <span>{t('cancel-button')}</span>
           </Button>
           <Button variant='gradient' onClick={onSubmit}>
-            <span>Confirm</span>
+            <span>{t('confirm-button')}</span>
           </Button>
         </DialogFooter>
       </Dialog>

@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { Typography } from '@material-tailwind/react';
 import React from 'react';
 
@@ -16,6 +17,8 @@ interface LayoutProps {
 }
 
 export const Layout = ({ children }: LayoutProps) => {
+const { t } = useTranslation("app/layout");
+
   return (
     <div className='mx-auto flex h-screen flex-col items-center justify-center p-4 file:container'>
       <main className='mt-20 mb-auto h-full w-full max-w-screen-md'>
@@ -23,8 +26,7 @@ export const Layout = ({ children }: LayoutProps) => {
       </main>
       <footer>
         <div className='flex-none'>
-          <Typography variant='small' className='inline'>
-            Made by osovv{' '}
+          <Typography variant='small' className='inline'>{t('made-by-osovv')}
           </Typography>
           <a
             className='btn btn-ghost btn-square'

@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   Button,
   Card,
@@ -28,6 +29,8 @@ export const TaskEditor = ({
   onSubmit,
   onClose,
 }: TaskEditorProps) => {
+const { t } = useTranslation("entities/task/ui/task-editor");
+
   const [title, setTitle] = useState(initialTitle);
   const [description, setDescription] = useState(initialDescription);
 
@@ -92,7 +95,7 @@ export const TaskEditor = ({
           <Input
             ref={mergeRefs([titleInput, ref, ref2])}
             variant='standard'
-            placeholder='Task name'
+            placeholder={t('task-name')}
             className='border-none text-base placeholder:text-base placeholder:text-gray-500'
             value={title}
             onChange={onChangeTitle}
@@ -100,7 +103,7 @@ export const TaskEditor = ({
           <Textarea
             ref={mergeRefs([ref, ref3])}
             variant='standard'
-            placeholder='Description'
+            placeholder={t('description')}
             className='border-none text-sm placeholder:text-sm placeholder:text-gray-500'
             value={description}
             onChange={onChangeDescription}
@@ -111,9 +114,7 @@ export const TaskEditor = ({
         <Button disabled={!isValid} onClick={handleSubmit}>
           {submitButtonText}
         </Button>
-        <Button onClick={handleClose} className='outlined'>
-          Cancel
-        </Button>
+        <Button onClick={handleClose} className='outlined'>{t('cancel-button')}</Button>
       </div>
     </div>
   );

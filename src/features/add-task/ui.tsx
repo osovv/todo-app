@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { Button } from '@material-tailwind/react';
 import { useAction } from '@reatom/npm-react';
 import { useCallback, useState } from 'react';
@@ -6,6 +7,8 @@ import { TaskEditor, taskModel } from '~/entities/task';
 import { createTask } from './model';
 
 export const AddTask = () => {
+const { t } = useTranslation("features/add-task");
+
   const [showForm, setShowForm] = useState(false);
   const [editorKey, setEditorKey] = useState(0);
 
@@ -29,9 +32,7 @@ export const AddTask = () => {
           onClick={(_) => setShowForm(true)}
           variant='text'
           className='w-full p-2 text-left'
-        >
-          + Add task
-        </Button>
+        >{t('add-task')}</Button>
       </div>
     );
   }

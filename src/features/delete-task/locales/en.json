@@ -1,0 +1,5 @@
+{
+  "confirm-delete-task": "Are you sure you want to delete <0>{{taskTitleStringTask}}</0>?",
+  "cancel-button": "Cancel",
+  "confirm-button": "Confirm"
+}
